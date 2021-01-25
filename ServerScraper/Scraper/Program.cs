@@ -27,6 +27,7 @@ namespace ServerScraper
             client = new DiscordSocketClient(config);
             client.OnLoggedIn += client_OnLoggedIn;
             client.Login(token);
+            Thread.Sleep(2000);
             
             //Run.
             GetIDs();
