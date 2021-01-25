@@ -41,7 +41,7 @@ namespace ServerScraper
 
         private static void GetIDs()
         {
-            using (var write = new StreamWriter("UserIDs.txt", false))
+            using (var write = new StreamWriter("UserList.txt", false))
             {
                 write.WriteLine("---[USERIDs]---");
                 try
