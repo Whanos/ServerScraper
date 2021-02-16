@@ -22,21 +22,23 @@ namespace ServerScraper
             token = botconfig.CToken;
             Serverid = botconfig.CServerId;
             Channelid = botconfig.CChannelId;
+            Console.WriteLine($"{token}\n{Serverid}\n{Channelid}");
             config.RetryOnRateLimit = false;
             config.Cache = true;
+            config.ApiVersion = 6;
             client = new DiscordSocketClient(config);
             client.OnLoggedIn += client_OnLoggedIn;
             client.Login(token);
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             
             //Run.
-            GetIDs();
             Thread.Sleep(-1);
         }
 
         private static void client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
         {
             Console.WriteLine("Logged in as " + client.User);
+            GetIDs();
         }
 
         private static void GetIDs()
