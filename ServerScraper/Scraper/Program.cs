@@ -30,7 +30,8 @@ namespace ServerScraper
             client.OnLoggedIn += client_OnLoggedIn;
             client.Login(token);
             Thread.Sleep(3000);
-            
+            GetIDs();
+
             //Run.
             Thread.Sleep(-1);
         }
@@ -38,7 +39,6 @@ namespace ServerScraper
         private static void client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
         {
             Console.WriteLine("Logged in as " + client.User);
-            GetIDs();
         }
 
         private static void GetIDs()
@@ -53,7 +53,7 @@ namespace ServerScraper
                     if (mcount >= 1000) Console.WriteLine("[WARN] Server has 1000+ members, expect quirky behaviour!");
                     using (StreamWriter writer = new StreamWriter("UserList.txt", true))
                     {
-                        foreach (GuildMember member in client.GetGuildChannelMembers(guild, Channelid))
+                        foreach (GuildMember member in client.GetGuildChannelMembersAsync(Serverid, Channelid).Result)
                         {
                             writer.WriteLine(member.User.Id);
                         }
